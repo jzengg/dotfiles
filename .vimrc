@@ -1,4 +1,3 @@
-set nocompatible              " be iMproved, required
 set number "Switch line numbers on
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
@@ -10,10 +9,16 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set showmatch
 set undofile
 set relativenumber
 set history=5000
+set colorcolumn=80
 runtime macros/matchit.vim
+
+" Put buffer window on right side
+let g:buffergator_viewport_split_policy = 'R'
+
 let mapleader=","
 
 
@@ -37,14 +42,15 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'ironcamel/vim-script-runner'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ConradIrwin/vim-bracketed-paste'
-" not working Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-line'
 Plugin 'sjl/gundo.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
-
+Plugin 'airblade/vim-rooter'
+Plugin 'ap/vim-buftabline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'honza/vim-snippets'
 
@@ -93,7 +99,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Autopairs shortcuts
-let g:AutoPairsShortcutJump = '<Leader><Leader>n'
+let g:AutoPairsShortcutJump = '<Leader>n'
 
 " Toggle tree view with ctrl + \
 nmap <silent> <c-\> :NERDTreeToggle<CR>
@@ -116,11 +122,49 @@ map <leader>c :nohl<CR>
 " F7 to format file
 map <F7> mzgg=G`z
 
+" ,a to search with ack
+map <Leader>a :Ack 
+
 " F3 to bring up undo tree
 nnoremap <F3> :GundoToggle<CR>
 
-" ,,b to run scripts
-let g:script_runner_key = '<Leader><Leader>r'
+" ,,r to run scripts
+let g:script_runner_key ='<F5>'
+
+" Ctrl + direction to switch between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Can use ; as substitute for : in normal mode
+nnoremap ; :
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+" Use ,pp and ,ff to move between buffers
+nnoremap <Leader>ff :bnext<CR>
+nnoremap <Leader>pp :bprev<CR>
+
+" Use tab to move around brackets
+nnoremap <tab> %
+vnoremap <tab> %
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Automatically save on focus lost
+au FocusLost * :wa
 
 " Automatically checks vimrc for changes
 augroup myvimrc
