@@ -10,6 +10,10 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set undofile
+set relativenumber
+set history=5000
+runtime macros/matchit.vim
 let mapleader=","
 
 
@@ -29,11 +33,18 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
-Plugin 'raimondi/delimitmate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'ironcamel/vim-script-runner'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 " not working Plugin 'tpope/vim-surround'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'kana/vim-textobj-line'
+Plugin 'sjl/gundo.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-commentary'
+
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'honza/vim-snippets'
 
@@ -81,6 +92,9 @@ colorscheme solarized
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" Autopairs shortcuts
+let g:AutoPairsShortcutJump = '<Leader><Leader>n'
+
 " Toggle tree view with ctrl + \
 nmap <silent> <c-\> :NERDTreeToggle<CR>
 
@@ -99,6 +113,15 @@ nnoremap k gk
 " ,c to remove search highlighting
 map <leader>c :nohl<CR>
  
+" F7 to format file
+map <F7> mzgg=G`z
+
+" F3 to bring up undo tree
+nnoremap <F3> :GundoToggle<CR>
+
+" ,,b to run scripts
+let g:script_runner_key = '<Leader><Leader>r'
+
 " Automatically checks vimrc for changes
 augroup myvimrc
     au!
