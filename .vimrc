@@ -161,7 +161,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Search forwards and backwards with s
 " `s{char}{char}{label}`
-nmap <Space>s <Plug>(easymotion-overwin-f2)
+nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
