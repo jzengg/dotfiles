@@ -7,17 +7,11 @@ set textwidth=80
 set scrolloff=5
 set ignorecase
 set smartcase
-set incsearch
-set hlsearch
 set showmatch
 set undofile
-set relativenumber
 set history=5000
 set colorcolumn=80
 runtime macros/matchit.vim
-
-" Put buffer window on right side
-let g:buffergator_viewport_split_policy = 'R'
 
 let mapleader=","
 
@@ -128,8 +122,8 @@ map <Leader>a :Ack
 " F3 to bring up undo tree
 nnoremap <F3> :GundoToggle<CR>
 
-" ,,r to run scripts
-let g:script_runner_key ='<F5>'
+" F4 to run scripts
+let g:script_runner_key ='<F4>'
 
 " Ctrl + direction to switch between splits
 nnoremap <C-h> <C-w>h
@@ -158,6 +152,48 @@ nnoremap <Leader>pp :bprev<CR>
 " Use tab to move around brackets
 nnoremap <tab> %
 vnoremap <tab> %
+
+" F5 to toggle background
+call togglebg#map("<F5>")
+
+" Easymotion mappings
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Search forwards and backwards with s
+" `s{char}{char}{label}`
+nmap <Space>s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Space>j <Plug>(easymotion-j)
+map <Space>k <Plug>(easymotion-k)
+map <Space>l <Plug>(easymotion-lineforward)
+map <Space>h <Plug>(easymotion-linebackward)
+
+" Keep cursor column when using jk
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+" Replace search with easymotion search
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+" Change easymotion highlight colors for solarized
+" easymotion highlight colors
+hi link EasyMotionTarget Search
+hi link EasyMotionTarget2First Search
+hi link EasyMotionTarget2Second Search
+hi link EasyMotionShade Comment
+hi link EasyMotionMoveHL Search
+hi link EasyMotionIncSearch Search
+
 " Use the nearest .git directory as the cwd
 " This makes a lot of sense if you are working on a project that is in version
 " control. It also supports works with .svn, .hg, .bzr.
@@ -171,4 +207,4 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC |
     if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+  augroup END
