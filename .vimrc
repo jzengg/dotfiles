@@ -1,3 +1,4 @@
+set nocompatible
 set number "Switch line numbers on
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
@@ -8,10 +9,19 @@ set scrolloff=5
 set ignorecase
 set smartcase
 set showmatch
-set undofile
 set history=5000
 set colorcolumn=80
 runtime macros/matchit.vim
+
+" Let's save undo info!
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 
 let mapleader=","
 
@@ -45,8 +55,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-rooter'
 Plugin 'ap/vim-buftabline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'honza/vim-snippets'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'honza/vim-snippets'
 
 
  " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -69,9 +79,11 @@ filetype plugin indent on    " required
 "
 " Brief help
 " :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+"auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
@@ -179,7 +191,8 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
+" EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
 map  n <Plug>(easymotion-next)
