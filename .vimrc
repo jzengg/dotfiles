@@ -50,14 +50,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-line'
-Plugin 'sjl/gundo.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-rooter'
-Plugin 'ap/vim-buftabline'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'honza/vim-snippets'
 
+" Plugin 'sjl/gundo.vim'
+" Plugin 'ap/vim-buftabline'
 
  " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
  let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
@@ -100,12 +100,16 @@ set t_Co=16
 let g:solarized_termcolors=16
 colorscheme solarized
 
+" Change color of matching parens
+hi MatchParen cterm=bold ctermbg=none ctermfg=green
+
 " Ctrl-P to fuzzy find
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Autopairs shortcuts
 let g:AutoPairsShortcutJump = '<Leader>n'
+
 
 " Toggle tree view with ctrl + \
 nmap <silent> <c-\> :NERDTreeToggle<CR>
