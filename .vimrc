@@ -11,6 +11,8 @@ set smartcase
 set showmatch
 set history=5000
 set colorcolumn=80
+set nobackup
+set noswapfile
 runtime macros/matchit.vim
 
 " Let's save undo info!
@@ -56,7 +58,6 @@ Plugin 'airblade/vim-rooter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'honza/vim-snippets'
 
-" Plugin 'sjl/gundo.vim'
 " Plugin 'ap/vim-buftabline'
 
  " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -101,7 +102,7 @@ let g:solarized_termcolors=16
 colorscheme solarized
 
 " Change color of matching parens
-hi MatchParen cterm=bold ctermbg=none ctermfg=green
+" hi MatchParen cterm=bold ctermbg=none ctermfg=green
 
 " Ctrl-P to fuzzy find
 let g:ctrlp_map = '<c-p>'
@@ -134,9 +135,6 @@ map <F7> mzgg=G`z
 
 " ,a to search with ack
 map <Leader>a :Ack 
-
-" F3 to bring up undo tree
-nnoremap <F3> :GundoToggle<CR>
 
 " F4 to run scripts
 let g:script_runner_key ='<F4>'
@@ -177,7 +175,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Search forwards and backwards with s
 " `s{char}{char}{label}`
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
